@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <title>{% block title%}Blogly{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <a href="/users/new">New User</a>
+        <a href="/users">User List</a>
+    </nav>
+
+    <section class="container">
+        {% block content%}
+        <h1>Blogly</h1>
+        {% endblock%}
+    </section>
+
+</body>
+</html>
