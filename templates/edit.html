@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Edit a user</h1>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for message in messages%}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif%}
+{% endwith %}
+
+<form action="/users/{{user.id}}/edit/update" method="POST">
+    <label for="first_name">First Name:
+        <input type="text" name="first_name" placeholder="First Name">
+    </label>
+
+    <label for="last_name">Last Name:
+        <input type="text" name="last_name" placeholder="Last Name">
+    </label>
+
+    <label for="image_url">Image URL:
+        <input type="text" name="image_url" placeholder="URL">
+    </label>
+    <button>Save</button>
+</form>
+
+<form action="/users">
+    <input type="submit" value="Cancel">
+</form>
+
+{% endblock %}
