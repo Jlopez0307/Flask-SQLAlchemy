@@ -74,5 +74,14 @@ def update_user(user_id):
     db.session.commit()
     return redirect(f'/users/details/{user_id}')
 
+@app.route('/users/<user_id>/delete', methods=["POST"])
+def delete_user(user_id):
+    user = Users.query.get(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    return redirect('/users')
+
+
+
 
     
