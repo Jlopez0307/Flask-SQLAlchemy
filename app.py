@@ -2,7 +2,7 @@
 
 from flask import Flask, request, render_template, redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, Users
+from models import db, connect_db, Users, Posts
 
 app = Flask(__name__)
 # 
@@ -47,6 +47,9 @@ def add_user():
     last_name = request.form["last_name"]
     image_url = request.form["image_url"]
 
+    if image_url == '':
+       image_url = 'https://p.kindpng.com/picc/s/252-2524695_dummy-profile-image-jpg-hd-png-download.png'
+
     new_user = Users(first_name = first_name, last_name = last_name, image_url = image_url)
     db.session.add(new_user)
     db.session.commit()
@@ -66,9 +69,13 @@ def update_user(user_id):
 
     user = Users.query.get(user_id)
     
+    if image_url:
+        user.image_url = image_url
+    elif image_url == '':
+        user.image_url = 'https://p.kindpng.com/picc/s/252-2524695_dummy-profile-image-jpg-hd-png-download.png'
+
     user.first_name = first_name
     user.last_name = last_name
-    user.image_url = image_url
 
     db.session.add(user)
     db.session.commit()
@@ -80,6 +87,52 @@ def delete_user(user_id):
     db.session.delete(user)
     db.session.commit()
     return redirect('/users')
+
+@app.route('/users/<user_id>/posts/new')
+def new_post(user_id):
+    user = Users.query.get(user_id)
+    return render_template('new_post.html', user = user)
+
+@app.route('/users/<user_id>/posts/new/update', methods=["POST"])
+def create_post(user_id):
+    title = request.form["title"]
+    content = request.form ["content"]
+    user = Users.query.get(user_id)
+
+    new_post = Posts(title = title, content = content, user_id = user.id)
+    db.session.add(new_post)
+    db.session.commit()
+    return redirect(f'/users/details/{user_id}')
+    
+@app.route('/posts/<post_id>')
+def post_details(post_id):
+    post = Posts.query.get_or_404(post_id)
+    return render_template('post_details.html', post = post)
+
+@app.route('/posts/<post_id>/edit')
+def edit_post(post_id):
+    post = Posts.query.get(post_id)
+    return render_template('edit_post.html', post = post)
+
+@app.route('/posts/<post_id>/edit/update' , methods = ["POST"])
+def update_post(post_id):
+    title = request.form["title"]
+    content = request.form["content"]
+    post = Posts.query.get(post_id)
+
+    post.title = title
+    post.content = content
+    db.session.add(post)
+    db.session.commit()
+    return redirect(f'/posts/{post_id}')
+
+@app.route('/posts/<post_id>/delete', methods=["POST"])
+def delete_post(post_id):
+    post = Posts.query.get(post_id)
+
+    db.session.delete(post)
+    db.session.commit()
+    return redirect(f'/users')
 
 
 

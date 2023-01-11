@@ -16,11 +16,11 @@
 
 <form action="/users/{{user.id}}/edit/update" method="POST">
     <label for="first_name">First Name:
-        <input type="text" name="first_name" placeholder="First Name">
+        <input type="text" name="first_name" placeholder="First Name" value="{{user.first_name}}">
     </label>
 
     <label for="last_name">Last Name:
-        <input type="text" name="last_name" placeholder="Last Name">
+        <input type="text" name="last_name" placeholder="Last Name" value="{{user.last_name}}">
     </label>
 
     <label for="image_url">Image URL:

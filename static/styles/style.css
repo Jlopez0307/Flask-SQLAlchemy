@@ -7,38 +7,73 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
-
+img{
+    width: 100%;
+}
 a{
     text-decoration: none;
+    font-size: 1.5em;
+    
 }
 
 a:hover{
     text-decoration: underline;
 }
 
+.button{
+    font-size: .8em;
+    padding: 5px;
+    margin: 5px;
+}
+
 nav{
     position: relative;
-    top: 7rem;
-    z-index: 1;
+
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border: 1px solid lightblue;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    width: 100%;
+    background-color: lightblue;
 }
 
-img{
-    width: 50%;
-}
+
 
 section.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 50%;
+    height: 50%;
     border: 1px solid rgb(99, 99, 99);
     border-radius: 20px;
-    padding: 100px;
     position: relative;
-    top: 5rem;
-
+    top: 2rem;
     text-align: center;
 }
 
 section.container ul{
     list-style-type: none;
     padding: 20px;
+}
+
+section.container section.user_profile{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+
+    font-size: 1.5em;
+}
+
+section.container section.user_profile div.user-img{
+    width: 50%;
+}
+
+section.container section.user_profile div.user-info{
+    position: relative;
+    left: 50px;
 }

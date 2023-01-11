@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <article>
+        <h1>{{post.title}}</h1>
+
+        <p>{{post.content}}</p>
+    </article>
+
+    <div>
+        <form action="/posts/{{post.id}}/edit">
+            <input type="submit" value="Edit" class="button">
+        </form>
+    
+        <form action="/posts/{{post.id}}/delete" method="POST">
+            <input type="submit" value="Delete" class="button">
+        </form>
+
+        <form action="/users/details/{{post.user_id}}">
+            <input type="submit" value="Back" class="button">
+        </form>
+    </div>
+
+{% endblock %}

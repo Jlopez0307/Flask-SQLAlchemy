@@ -9,15 +9,16 @@
 </head>
 <body>
 
-    <nav>
-        <a href="/users">User List</a>
-        <a href="/users/new">New User</a>
-    </nav>
-
     <section class="container">
+        <nav>
+            <a href="/users">User List</a>
+            <a href="/users/new">New User</a>
+        </nav>
+
         {% block content%}
         <h1>Blogly</h1>
         {% endblock%}
+        
     </section>
 
 </body>

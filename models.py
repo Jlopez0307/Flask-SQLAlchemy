@@ -22,5 +22,24 @@ class Users(db.Model):
 
     last_name = db.Column( db.String(20))
 
-    image_url = db.Column( db.String(100), default = 'https://www.shutterstock.com/image-vector/empty-photo-male-profile-gray-260nw-538707310.jpg')
+    image_url = db.Column( db.String, server_default = 'https://p.kindpng.com/picc/s/252-2524695_dummy-profile-image-jpg-hd-png-download.png')
+
+class Posts(db.Model):
+    __tablename__ = 'posts'
+
+    def __repr__(self):
+        p = self
+        return f"<post id = {p.id} | title = {p.title} | content = {p.content} | created_at = {p.created_at}"
+
+    id = db.Column( db.Integer, primary_key = True, autoincrement = True)
+
+    title = db.Column( db.String(50) )
+
+    content = db.Column( db.String(50) )
+
+    created_at = db.Column(db.DateTime(timezone=True), server_default = db.func.now() )
+    # Has to reference the TABLE when using users.id
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    # Has to reference the CLASS in python when referencing Users
+    user = db.relationship('Users', backref = 'posts')
 
