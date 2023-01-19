@@ -3,6 +3,12 @@
     padding: 0;
 }
 
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 body{
     display: flex;
     justify-content: center;
@@ -14,17 +20,40 @@ img{
 a{
     text-decoration: none;
     font-size: 1.5em;
-    
 }
 
 a:hover{
     text-decoration: underline;
 }
 
+.nav-link{
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+
+
 .button{
     font-size: .8em;
-    padding: 5px;
+    padding: .5rem;
+    width: 50%;
     margin: 5px;
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    border-radius: .25rem;
+    cursor: pointer;
+}
+
+
+.btn-input{
+    font-size: 1.2em;
+    padding: 5px 10px 5px 10px;
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    border-radius: .25rem;
+    cursor: pointer;
 }
 
 nav{
@@ -33,9 +62,14 @@ nav{
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border: 1px solid lightblue;
+    border-color: lightblue;
+
+    padding-top: 15px;
     padding-bottom: 15px;
     margin-bottom: 30px;
+
     width: 100%;
+
     background-color: lightblue;
 }
 
@@ -61,19 +95,34 @@ section.container ul{
     padding: 20px;
 }
 
-section.container section.user_profile{
-    display: flex;
-    justify-items: center;
-    align-items: center;
-
-    font-size: 1.5em;
+section.container section.user-posts{
+    flex-direction: column;
 }
 
-section.container section.user_profile div.user-img{
+section.container div.user-img{
     width: 50%;
 }
 
-section.container section.user_profile div.user-info{
-    position: relative;
-    left: 50px;
+.tag{
+    background-color: #00d9ff;
+    color: rgb(255, 255, 255);
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.new-user-form{
+    font-size: 1.5em;
+    flex-direction: column;
+}
+
+.text-box{
+    padding: 10px;
+}
+
+.lg-font{
+    font-size: 1.8em;
+}
+
+.md-font{
+    font-size: 1.5em;
 }

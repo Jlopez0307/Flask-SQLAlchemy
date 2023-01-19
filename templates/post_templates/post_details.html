@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <h1 class="lg-font">{{post.title}}</h1>
+
+        <p class="md-font">{{post.content}}</p>
+        <ul class="flex">Tags:
+            {% for tag in post.tag %}
+                <li class="tag">{{tag.name}}</li>
+            {% endfor%}
+        </ul>
+
+    <div class="flex">
+        <form action="/posts/{{post.id}}/edit">
+            <input type="submit" value="Edit" class="btn-input">
+        </form>
+    
+        <form action="/posts/{{post.id}}/delete" method="POST">
+            <input type="submit" value="Delete" class="btn-input">
+        </form>
+
+        <form action="/users/details/{{post.user_id}}">
+            <input type="submit" value="Back" class="btn-input">
+        </form>
+    </div>
+
+{% endblock %}

@@ -2,21 +2,21 @@
 
 {% block content %}
 
-<form action="/users/new/add" method="POST">
+<form action="/users/new/add" method="POST" class="flex new-user-form">
     
-    <label for="first_name">First Name:
+    <label for="first_name" class="text-box">First Name:
         <input type="text" name="first_name" placeholder="First Name">
     </label>
     
-    <label for="last_name">Last Name:
+    <label for="last_name" class="text-box">Last Name:
         <input type="text" name="last_name" placeholder="Last Name">
     </label>
 
-    <label for="image_url">Image URL:
+    <label for="image_url" class="text-box">Image URL:
         <input type="text" name="image_url" placeholder="URL">
     </label>
 
-    <button>Add</button>
+    <button class="button">Add</button>
 
 </form>
 

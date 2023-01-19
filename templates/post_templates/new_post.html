@@ -6,13 +6,22 @@
 
     <form action="/users/{{user.id}}/posts/new/update" method="POST">
 
-        <label for="title">Title:
+        <label for="title" class="lg-font">Title:
             <input type="text" name="title">
         </label>
 
-        <label for="content">Content:
+        <label for="content" class="lg-font">Content:
             <input type="text" name="content">
         </label>
+        
+        <ul>
+            {% for tag_name in tag %}
+                <li class="md-font">
+                    <input type="checkbox" name="post_tag" value="{{tag_name.id}}">{{tag_name.name}}
+                </li>
+            {% endfor %}
+        </ul>
+
         <button class="button"> Submit </button>
     </form>
 

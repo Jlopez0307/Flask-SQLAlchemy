@@ -9,7 +9,7 @@ def connect_db(app):
 
     db.init_app(app)
 
-class Users(db.Model):
+class User(db.Model):
     __tablename__ = 'users'
 
     def __repr__(self):
@@ -24,7 +24,9 @@ class Users(db.Model):
 
     image_url = db.Column( db.String, server_default = 'https://p.kindpng.com/picc/s/252-2524695_dummy-profile-image-jpg-hd-png-download.png')
 
-class Posts(db.Model):
+
+
+class Post(db.Model):
     __tablename__ = 'posts'
 
     def __repr__(self):
@@ -41,5 +43,30 @@ class Posts(db.Model):
     # Has to reference the TABLE when using users.id
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     # Has to reference the CLASS in python when referencing Users
-    user = db.relationship('Users', backref = 'posts')
+    user = db.relationship('User', backref = 'posts')
+
+
+class Tag(db.Model):
+    """Tags for posts"""
+
+    __tablename__ = "tags"
+
+    id = db.Column( db.Integer, primary_key = True, autoincrement = True )
+    name = db.Column( db.String, unique = True, nullable = False)
+
+    assignments = db.relationship('Post', secondary = 'post_tags' , backref = 'tag')
+
+
+class PostTag(db.Model):
+    """Model for accessing both tags and posts"""
+
+    __tablename__ = "post_tags"
+
+    post_id = db.Column( db.Integer, db.ForeignKey('posts.id'), primary_key = True, nullable = False)
+
+    tag_id = db.Column( db.Integer, db.ForeignKey('tags.id'), primary_key = True, nullable = False)
+
+    # __table_args__ = ( db.PrimaryKeyConstraint( post_id , tag_id,),)
+
+
 

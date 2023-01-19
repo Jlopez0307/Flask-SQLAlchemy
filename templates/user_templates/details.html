@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <div class="user-img">
+        <img src="{{user.image_url}}" alt="User image" class="user-image">
+    </div>
+
+    <div class="flex">
+        <form action="/users/{{user.id}}/edit">
+            <input type="submit" value="Edit" class="btn-input">
+        </form>
+
+        <form action="/users/{{user.id}}/delete" method="POST">
+            <input type="submit" value="Delete" class="btn-input">
+        </form>
+    </div>
+
+    <section class="user-posts">
+        <ul>
+            {% if user.posts%}
+                {% for post in user.posts%}
+                    <li class="lg-font"><a href="/posts/{{post.id}}">{{post.title}}</a></li>
+                {% endfor %}
+            {% else %}
+                <li class="lg-font">No posts yet!</li>
+            {% endif %}
+        </ul>
+
+        <form action="/users/{{user.id}}/posts/new">
+            <input type="submit" value="Add Post" class="btn-input">
+        </form>
+        </div>
+    </section>
+
+
+    <!-- <button> <a href="/users/{{user.id}}/edit">Edit</a> </button>
+    <button> <a href="/users/{{user.id}}/delete">Delete</a> </button> -->
+
+
+{% endblock %}
