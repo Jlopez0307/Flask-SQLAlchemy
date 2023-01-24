@@ -8,7 +8,7 @@ app = Flask(__name__)
 # 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Halo03117!@localhost:5432/blogly'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_ECHO'] = True
+app.config['SQLALCHEMY_ECHO'] = False
 connect_db(app)
 
 app.config['SECRET_KEY'] = 'cats'
@@ -43,9 +43,9 @@ def create_user():
 #Route for handling and adding new user to database
 @app.route('/users/new/add', methods = ["POST"])
 def add_user():
-    first_name = request.form["first_name"]
-    last_name = request.form["last_name"]
-    image_url = request.form["image_url"]
+    first_name = request.form.get("first_name")
+    last_name = request.form.get("last_name")
+    image_url = request.form.get("image_url")
 
     if image_url == '':
        image_url = 'https://p.kindpng.com/picc/s/252-2524695_dummy-profile-image-jpg-hd-png-download.png'
